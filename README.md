@@ -11,6 +11,17 @@ Fork and clone this repo. On your fork, answer and commit the follow questions. 
 
 - Translate at least 3 of the capital names into another language.
 
+```
+//var citiesDict = ["Brazil": "Brazilia", "Argentina": "Buenos Aires", "Venezuela": "Caracas"]
+//
+//citiesDict = ["Chile": "Santiago"]
+//citiesDict = ["Colombia": "Bogotá"]
+//
+//citiesDict["Chile"] = "サンティアゴ"
+//citiesDict["Venezula"] = "カラカス"
+//citiesDict["Argentina"] = "ブエノスアイレス"
+```
+
 
 ## Question 2
 
@@ -27,6 +38,41 @@ Fork and clone this repo. On your fork, answer and commit the follow questions. 
 - Remove the new keys made in the previous two steps
 
 - Add 2 to every value inside of `someDict`.
+
+```
+var someDict:[String:Int] = ["One": 1, "Two": 4, "Three": 9, "Four": 16, "Five": 25]
+
+if let summing = someDict["Three"], let moreSumming = someDict["Five"] {
+print(summing + moreSumming)
+}
+someDict ["six"] = 10
+someDict ["seven"] = 3
+
+var multiValue = 1
+
+for value in someDict.values{
+multiValue *= value
+}
+
+someDict ["productUpToSeven"] = multiValue
+
+var addValue = 0
+
+for newValue in someDict.values{
+if newValue != someDict ["seven"] {
+addValue += newValue
+}
+}
+someDict ["sumUpToSix"] = addValue
+
+someDict ["productUpToSeven"] = nil
+someDict ["sumUpToSix"] = nil
+
+for (doubleKey, addByTwo) in someDict {
+someDict [doubleKey] = addByTwo + 2
+}
+print(someDict)
+```
 
 
 ## Question 3
@@ -50,6 +96,29 @@ Using the dictionary created in the previous problem, do the following:
 - Write an if/else statement that compares the score of John Krakaur with Mark Twain. Print out the name of the author with the highest score.
 
 - Use a for-loop to iterate through the dictionary you created at the beginning of the problem, and print out the content in the form of key: value, one entry per line.
+
+```
+var readability: [String: Double] = ["Mark Twain":8.9, "Nathaniel Hawthorne":5.1, "John Steinbeck":2.3, "C.S. Lewis":9.9, "Jon Krakauer":6.1 ]
+
+if let johnScore = readability ["John Steinbeck"]{
+print(johnScore)
+}
+readability ["Erik Larson"] = 9.2
+
+
+if let jon = readability ["Jon Krakauer"], let mark = readability ["Mark Twain"]{
+if jon > mark {
+print("Jon Krakauer has a better score")
+}
+else{
+print("Mark Twain has the better score")
+}
+}
+
+for (author, comparingScores) in readability {
+print(author, comparingScores)
+}
+```
 
 
 ## Question 4
@@ -88,9 +157,47 @@ var code = [
 
 var message = "hello world"
 ```
+```
+var message = "hello world"
+
+var encodedMessage: String = ""
+
+for codex in message {
+
+if let unwrappedcodex = code [String(codex)] {
+encodedMessage += unwrappedcodex
+}
+else{
+encodedMessage += " "
+}
+}
+
+print(encodedMessage)
+```
 
 You are also given an `encodedMessage` which contains only lowercase letters and spaces. Use the `code` dictionary to decode the message and print it.
 `var encodedMessage = "uijt nfttbhf jt ibse up sfbe"`
+
+```
+var encodedMessage = "uijt nfttbhf jt ibse up sfbe"
+
+var message: String = ""
+
+for char in encodedMessage {
+if char != " "{
+for (codexKey, codexValue) in code {
+if codexValue == String(char) {
+message += codexKey
+}
+}
+}
+else{
+message += " "
+}
+}
+
+print(message)
+```
 
 
 ## Question 5
@@ -121,8 +228,29 @@ var people: [[String:String]] = [
     ]
 ]
 ```
+```
+var firstNames: [String] = []
+
+for dict in people{
+if let unwrappedName =  dict["firstName"]{
+firstNames.append(unwrappedName)
+}
+}
+print(firstNames)
+```
 
 Now, create an array of strings called `fullNames` that contains the values for `“firstName”` and `“lastName”` from the dictionary separated by a space.
+```
+var fullNames: [String] = []
+
+for newDict in people{
+if let unwrappedFirstName = newDict["firstName"], let unwrappedLastName = newDict["lastName"]{
+fullNames.append("\(unwrappedFirstName) \(unwrappedLastName)" )
+}
+}
+
+print(fullNames)
+```
 
 
 ## Question 6
@@ -161,6 +289,22 @@ var peopleWithScores: [[String: String]] = [
 
 Print out the dictionary above in the following format:  **full name - score**
 
+```
+var fullName = "" // add the full name of high scorer
+
+var largestScore = 0
+
+for dictionary in peopleWithScores {
+if let fname = dictionary["firstName"], let lname = dictionary["lastName"], let scoreString = dictionary["score"], let score = Int(scoreString) {
+if score > largestScore {
+largestScore = score
+// add name to full name
+fullName = "\(fname) \(lname)"
+}
+}
+}
+print(fullName)
+```
 
 ## Question 7
 
